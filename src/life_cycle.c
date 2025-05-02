@@ -1,21 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   life_cycle.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tmidik <tibetmdk@gmail.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/01 01:12:45 by tmidik            #+#    #+#             */
-/*   Updated: 2025/05/01 14:21:18 by tmidik           ###   ########.fr       */
+/*   Created: 2025/05/01 14:54:06 by tmidik            #+#    #+#             */
+/*   Updated: 2025/05/01 14:54:46 by tmidik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philosophers.h"
-int main(int ac, char **av) //  ./philosophers number_of_philo | time_to_eat | time_to_sleep | time_to_die | each_philosophers_must_eat
+
+int	life_cyle(t_data *data)
 {
-	t_data	*data;
 	
-	data = (t_data *)malloc(sizeof(t_data));
-	init_data(data, ac, av);
-	init_philosophers(data);
 }
