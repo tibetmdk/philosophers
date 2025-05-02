@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmidik <tibetmdk@gmail.com>                +#+  +:+       +#+        */
+/*   By: tmidik <tibetmdk>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 01:17:22 by tmidik            #+#    #+#             */
-/*   Updated: 2025/05/01 14:54:57 by tmidik           ###   ########.fr       */
+/*   Updated: 2025/05/02 17:17:38 by tmidik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ typedef struct s_data
 	int				time_to_sleep;
 	int				time_to_die;
 	int				each_philosophers_must_eat;
-	t_philo			*philosopher;
+	t_philo			*philosophers;
 	pthread_mutex_t	*forks;
 }				t_data;
 
@@ -44,11 +44,13 @@ struct s_philo
 
 
 int		ft_atoi(const char *str);
+long	get_time(void);
+void	print_action(t_philo *philo, char *msg);
 
 
 int		init_philosophers(t_data *data);
 int		init_threads(t_data *data);
-int		life_cyle(t_data *data);
+void	*life_cycle(void *arg);
 void	init_data(t_data *data, int ac, char **av);
 
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmidik <tibetmdk@gmail.com>                +#+  +:+       +#+        */
+/*   By: tmidik <tibetmdk>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 13:53:42 by tmidik            #+#    #+#             */
-/*   Updated: 2025/05/01 14:53:30 by tmidik           ###   ########.fr       */
+/*   Updated: 2025/05/02 17:13:54 by tmidik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ int	init_philosophers(t_data *data)
 {
 	int	i;
 
-	data->philosopher = malloc(sizeof(t_philo) * data->number_of_philo);
-	if (!data->philosopher)
+	data->philosophers = malloc(sizeof(t_philo) * data->number_of_philo);
+	if (!data->philosophers)
 		return (1);
 	data->forks = malloc(sizeof(pthread_mutex_t) * data->number_of_philo);
 	if (!data->forks)
@@ -40,11 +40,11 @@ int	init_philosophers(t_data *data)
 	i = 0;
 	while (i < data->number_of_philo)
 	{
-		data->philosopher[i].id = i + 1;
-		data->philosopher[i].data = data;
-		data->philosopher[i].left_fork = &data->forks[i];
-		data->philosopher[i].right_fork = &data->forks[(i + 1) % data->number_of_philo];
-		data->philosopher[i].last_meal_time = 0;
+		data->philosophers[i].id = i + 1;
+		data->philosophers[i].data = data;
+		data->philosophers[i].left_fork = &data->forks[i];
+		data->philosophers[i].right_fork = &data->forks[(i + 1) % data->number_of_philo];
+		data->philosophers[i].last_meal_time = 0;
 		i++;
 	}
 	return (0);
@@ -60,7 +60,7 @@ int	init_threads(t_data *data)
 	i = 0;
 	while (i < data->number_of_philo)
 	{
-		if (pthread_create(&threads[i], NULL, life_cycle, &data->philosopher[i]))
+		if (pthread_create(&threads[i], NULL, life_cycle, &data->philosophers[i]))
 			return (1);
 		i++;
 	}

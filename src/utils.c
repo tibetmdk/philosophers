@@ -3,14 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmidik <tibetmdk@gmail.com>                +#+  +:+       +#+        */
+/*   By: tmidik <tibetmdk>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 14:12:40 by tmidik            #+#    #+#             */
-/*   Updated: 2025/05/01 14:12:54 by tmidik           ###   ########.fr       */
+/*   Updated: 2025/05/02 17:19:19 by tmidik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philosophers.h"
+
+long	get_time(void)
+{
+	struct timeval	tv;
+
+	gettimeofday(&tv, NULL);
+	return ((tv.tv_sec * 1000) + (tv.tv_usec / 1000));
+}
 
 int	ft_atoi(const char *str)
 {
@@ -35,4 +43,9 @@ int	ft_atoi(const char *str)
 		i++;
 	}
 	return (result * sign);
+}
+
+void	print_action(t_philo *philo, char *msg)
+{
+	printf("philo: %d -> %s\n", philo->id, msg);
 }

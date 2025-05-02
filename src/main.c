@@ -3,19 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tmidik <tibetmdk@gmail.com>                +#+  +:+       +#+        */
+/*   By: tmidik <tibetmdk>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 01:12:45 by tmidik            #+#    #+#             */
-/*   Updated: 2025/05/01 14:21:18 by tmidik           ###   ########.fr       */
+/*   Updated: 2025/05/02 17:12:18 by tmidik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philosophers.h"
-int main(int ac, char **av) //  ./philosophers number_of_philo | time_to_eat | time_to_sleep | time_to_die | each_philosophers_must_eat
+int	main(int ac, char **av)
 {
-	t_data	*data;
-	
-	data = (t_data *)malloc(sizeof(t_data));
-	init_data(data, ac, av);
-	init_philosophers(data);
+	t_data	data;
+
+	if (ac != 5 && ac != 6)
+		return (printf("Usage: ./philo number time_to_die time_to_eat time_to_sleep [meals]\n"), 1);
+	init_data(&data, ac, av);
+	if (init_philosophers(&data))
+		return (1);
+	if (init_threads(&data))
+		return (1);
+	return (0);
 }
+
