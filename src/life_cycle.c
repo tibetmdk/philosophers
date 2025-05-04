@@ -6,7 +6,7 @@
 /*   By: tmidik <tibetmdk@gmail.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/04 15:03:16 by tmidik            #+#    #+#             */
-/*   Updated: 2025/05/04 15:55:13 by tmidik           ###   ########.fr       */
+/*   Updated: 2025/05/04 17:13:02 by tmidik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void	*life_cycle(void *arg)
 
 	while (1)
 	{
+		// 🔴 ÖLÜM KONTROLÜ
 		pthread_mutex_lock(&philo->data->death_lock);
 		if (philo->data->is_philo_died)
 		{
@@ -60,6 +61,7 @@ void	*life_cycle(void *arg)
 		}
 		pthread_mutex_unlock(&philo->data->death_lock);
 
+		// 🟢 EĞER HÂLÂ HAYATTAYSA DEVAM ET
 		philo_eat(philo);
 
 		if (philo->data->each_philosophers_must_eat > 0 &&
@@ -71,4 +73,6 @@ void	*life_cycle(void *arg)
 	}
 	return (NULL);
 }
+
+
 

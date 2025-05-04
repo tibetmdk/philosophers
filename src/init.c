@@ -6,7 +6,7 @@
 /*   By: tmidik <tibetmdk@gmail.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 13:53:42 by tmidik            #+#    #+#             */
-/*   Updated: 2025/05/04 15:55:30 by tmidik           ###   ########.fr       */
+/*   Updated: 2025/05/04 16:28:49 by tmidik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,10 +68,9 @@ int	init_threads(t_data *data)
 			return (1);
 		i++;
 	}
-	// ✅ Kontrol thread'i başlatılır (ölüm veya everyone_ate kontrolü)
 	if (pthread_create(&control_thread, NULL, life_cycle_control, data))
 		return (1);
-	pthread_detach(control_thread); // join yerine detach kullanabilirsin
+	pthread_detach(control_thread);
 	i = 0;
 	while (i < data->number_of_philo)
 		pthread_join(threads[i++], NULL);

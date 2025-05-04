@@ -6,7 +6,7 @@
 /*   By: tmidik <tibetmdk@gmail.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/04 15:03:11 by tmidik            #+#    #+#             */
-/*   Updated: 2025/05/04 15:39:48 by tmidik           ###   ########.fr       */
+/*   Updated: 2025/05/04 17:11:21 by tmidik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,17 @@ void	*life_cycle_control(void *arg)
 		i = 0;
 		while (i < data->number_of_philo)
 		{
+			if (get_time() - data->philosophers[i].last_meal_time > data->time_to_die)
+			{
+				pthread_mutex_lock(&data->death_lock);
+				if (!data->is_philo_died)
+				{
+					print_action(&data->philosophers[i], "died");
+					data->is_philo_died = 1;
+				}
+				pthread_mutex_unlock(&data->death_lock);
+				return (NULL);
+			}
 			if (data->each_philosophers_must_eat > 0 &&
 				data->philosophers[i].meals_eaten >= data->each_philosophers_must_eat)
 				full_philo_count++;
