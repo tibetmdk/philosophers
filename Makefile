@@ -3,7 +3,7 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 NAME = philosophers
 
-SRCS = src/init.c src/main.c src/utils.c src/life_cycle.c
+SRCS = src/init.c src/main.c src/utils.c src/life_cycle.c src/control.c
 
 OBJS = $(SRCS:.c=.o)
 
